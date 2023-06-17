@@ -13,6 +13,8 @@ class Polynomial:
         child: Optional[Self],
     ) -> None:
 
+        assert self.degree >= 0, "Degree must be positive"
+
         self.coefficient = coefficient
         self.degree = degree
         self.child = child
@@ -22,18 +24,13 @@ class Polynomial:
 
         if abs(self.coefficient) != 1:
             o += str(self.coefficient)
+
         elif self.coefficient == -1:
             o += "-"
 
-
-        if self.degree > 0:
-            o += "x"
-
-        if self.degree > 1:
-            o += f"^{self.degree}"
-
-        if self.child:
-            o += repr(self.child)
+        o += "x"               if self.degree > 0 else ""
+        o += f"^{self.degree}" if self.degree > 1 else ""
+        o += repr(self.child)  if self.child      else ""
 
         return o
 
