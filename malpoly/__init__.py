@@ -13,7 +13,7 @@ class Polynomial:
         child: Optional[Self],
     ) -> None:
 
-        assert self.degree >= 0, "Degree must be positive"
+        assert degree >= 0, "Degree must be positive"
 
         self.coefficient = coefficient
         self.degree = degree
@@ -79,3 +79,12 @@ class Polynomial:
             x - self(x) / self.derivative()(x),
             precision - 1
         )
+
+    def primitive(self) -> 'Polynomial':
+        if self.degree == 0:
+            return Polynomial(self.coefficient, 1, None)
+        else:
+            primitive_coefficient = self.coefficient / (self.degree + 1)
+            primitive_degree = self.degree + 1
+            primitive_child = self.child.primitive() if self.child else None
+            return Polynomial(primitive_coefficient, primitive_degree, primitive_child)
