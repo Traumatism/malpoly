@@ -7,3 +7,4 @@ if __name__ == "__main__":
     print(f"f(x) = {p}")
     print(f"f'(x) = {p.derivative()}")
     print(f"F(f') = {p.derivative().primitive()}")
+    print(f"I(1, 5, f(x)dx) = {p.integrate(1, 5)}")
