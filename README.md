@@ -45,5 +45,5 @@ print(p.newton_rafson())
 ```python
 p: Polynomial = ...
 
-print(p.bruteforce_roots()
+print(p.bruteforce_roots())
 ```
