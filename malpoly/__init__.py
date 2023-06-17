@@ -80,17 +80,17 @@ class Polynomial:
             precision - 1
         )
 
-    def primitive(self) -> 'Polynomial':
+    def primitive(self) -> Self:
         if self.degree == 0:
             return Polynomial(self.coefficient, 1, None)
-        else:
-            primitive_coefficient = self.coefficient / (self.degree + 1)
-            primitive_degree = self.degree + 1
-            primitive_child = self.child.primitive() if self.child else None
-            return Polynomial(primitive_coefficient, primitive_degree, primitive_child)
+
+        return Polynomial(
+            self.coefficient / (self.degree + 1),
+            self.degree + 1,
+            self.child.primitive() if self.child else None
+        )
 
     def integrate(self, a: Numeric, b: Numeric) -> Numeric:
-        primitive_poly = self.primitive()
-        integral_a = primitive_poly(a)
-        integral_b = primitive_poly(b)
-        return integral_b - integral_a
+        F = self.primitive()
+        return F(b) - F(a)
+

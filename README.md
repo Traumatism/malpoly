@@ -32,6 +32,22 @@ p: Polynomial = ...
 dp_dx = p.derivative()
 ```
 
+### Getting a primitive of a polynomial
+
+```python
+p: Polynomial = ...
+
+P = p.primitive()
+```
+
+### Integrate the polynomial between a and b
+
+```python
+p: Polynomial = ...
+
+I = p.integrate(a, b)
+```
+
 ### Finding zero using Newton Rafson method
 
 ```python
